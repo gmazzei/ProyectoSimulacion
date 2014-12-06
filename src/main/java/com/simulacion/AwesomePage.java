@@ -34,6 +34,8 @@ public class AwesomePage extends WebPage {
 	private final Integer CONTROL_VAR_INIT_VALUE = 1;
 	private final Integer CONTROL_VAR_MIN_VALUE = 1;
 	private final Integer CONTROL_VAR_MAX_VALUE = 99;
+
+	private final Integer CANT_CONEXIONES_NODO = 120;
 	
 	public AwesomePage() {
 		
@@ -90,6 +92,8 @@ public class AwesomePage extends WebPage {
 		final Label promedioConexionesClusterPorMinuto = new Label("promedioConexionesClusterPorMinuto");
 		panelResultados.add(promedioConexionesClusterPorMinuto);
 		
+		final Label nodos = new Label("nodos");
+		panelResultados.add(nodos);
 		
 		
 		//Graficos
@@ -189,11 +193,15 @@ public class AwesomePage extends WebPage {
 				Simulador simulador = Simulador.getInstance();
 				Resultados resultados = simulador.realizarSimulacion(servidoresFisicos.getModelObject(), servidoresApache.getModelObject(), personas.getModelObject(), tiempoSimulacion.getModelObject());
 				
+
+				Double cantidadNodos = resultados.getPromedioConexionesClusterPorMinuto() / CANT_CONEXIONES_NODO;
+
 				porcentajeConexionesRechazadas.setDefaultModel(Model.of(resultados.getPorcentajeDeConexionesRechazadas()));
 				porcentajeTiempoOcioso.setDefaultModel(Model.of(resultados.getPorcentajeDeTiempoOcioso()));
 				promedioTiempoEntreReseteos.setDefaultModel(Model.of(resultados.getPromedioDeTiempoEntreReseteos()));
 				promedioConexionesClusterPorMinuto.setDefaultModel(Model.of(resultados.getPromedioConexionesClusterPorMinuto()));
-				
+				nodos.setDefaultModel(Model.of(cantidadNodos.intValue()));				
+
 				barraConexionesRechazadas.setY(resultados.getPorcentajeDeConexionesRechazadas());
 				barraConexionesAceptadas.setY(100.0 - resultados.getPorcentajeDeConexionesRechazadas());
 				barraReseteos.setY(resultados.getPromedioDeTiempoEntreReseteos());

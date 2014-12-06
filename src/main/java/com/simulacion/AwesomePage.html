@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Simulación FADU</title>
+  <title>Simulaci&oacute;n FADU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -38,7 +38,7 @@
 		<div class="col-md-12 column">
 			<nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
 				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Simulación FADU</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Simulaci&oacute;n FADU</a>
 				</div>
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,7 +60,7 @@
 									<a href="#">Gabriel L. Mazzei</a>
 								</li>
 								<li>
-									<a href="#">Sebasti&aacute;n Müller</a>
+									<a href="#">Sebasti&aacute;n M&uuml;ller</a>
 								</li>
 								<li>
 									<a href="#">Vanesa A. Viejo</a>
@@ -78,13 +78,13 @@
 					</h3>
 
 					<p>
-						Seleccione los valores para la simulación.<br>
+						Seleccione los valores para la simulaci&oacute;n.<br>
 					</p>
 					<br>
 					<form wicket:id="form" class="form-horizontal" role="form">
 						
 						<div class="form-group">
-				        	<label class="control-label col-sm-5" for="tiempoSimulacion">Tiempo de Simulación:</label>
+				        	<label class="control-label col-sm-5" for="tiempoSimulacion">Tiempo de Simulaci&oacute;n:</label>
 					        <div class="col-sm-7">
 					        	<input wicket:id="tiempoSimulacion" type="number" class="form-control" id="tiempoSimulacion"/>
 					        </div>
@@ -92,7 +92,7 @@
 
 
 						<div class="form-group">
-				        	<label class="control-label col-sm-5" for="servidoresFisicos">Servidores Físicos:</label>
+				        	<label class="control-label col-sm-5" for="servidoresFisicos">Servidores F&iacute;sicos:</label>
 					        <div class="col-sm-7">
 					        	<input wicket:id="servidoresFisicos" type="number" class="form-control" id="servidoresFisicos"/>
 					        </div>
@@ -114,7 +114,7 @@
 				        </div>
 
 
-						<button wicket:id="comenzarSimulacion" type="button" class="btn btn-primary btn-default btn-block">Comenzar Simulación</button>
+						<button wicket:id="comenzarSimulacion" type="button" class="btn btn-primary btn-default btn-block">Comenzar Simulaci&oacute;n</button>
 					</form> 
 				</div>
 				<div class="col-md-1 column">
@@ -159,6 +159,15 @@
 					        	<label wicket:id="promedioConexionesClusterPorMinuto" class="form-control" id="promedioConexionesClusterPorMinuto"></label>
 					        </div>
 				        </div>
+
+
+				        <div class="form-group">	
+				        	<label class="control-label col-sm-5" for="nodos">Nodos:</label>
+					        <div class="col-sm-7">
+					        	<label wicket:id="nodos" class="form-control" id="nodos"></label>
+					        </div>
+				        </div>
+
 
 					</form> 
 

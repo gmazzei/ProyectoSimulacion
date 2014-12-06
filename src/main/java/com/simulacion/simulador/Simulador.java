@@ -171,24 +171,17 @@ public class Simulador {
 
 	public Integer generarConexionesLiberadas() {
 		
-//		Double random = Math.random(); 
-//		
-//		while (random.equals(1.0)) {
-//			random = Math.random();
-//		}
-//		
-//		Double conexiones = ((-Math.log(1 - random)) / 0.00032254) + 1344;
-//		
-//		return conexiones.intValue();
-		
 		Double random = Math.random(); 
 		
-		while (random.equals(0.0) || random.equals(1.0)) {
+		while (random.equals(1.0)) {
 			random = Math.random();
 		}
 		
-		Double conexiones = 5312.7 - (639.14 * Math.log(-Math.log(random)));
+		Double conexiones = ((-Math.log(1 - random)) / 0.00032254) + 2344;
+		
 		return conexiones.intValue();
+		
+
 	}
 
 	private Integer generarDemora(Integer p) {

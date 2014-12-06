@@ -1,6 +1,5 @@
 package com.simulacion;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -27,10 +26,10 @@ import com.simulacion.simulador.Simulador;
 public class AwesomePage extends WebPage {
 	
 	
-	private final Integer TIME_INIT_VALUE = 1000000;
-	private final Integer TIME_MIN_VALUE = 1000000;
-	private final Integer TIME_STEP = 1000000;
-	private final Integer TIME_MAX_VALUE = 100000000;
+	private final Long TIME_INIT_VALUE = 1000000l;
+	private final Long TIME_MIN_VALUE = 1000000l;
+	private final Long TIME_STEP = 1000000l;
+	private final Long TIME_MAX_VALUE = 100000000l;
 
 	private final Integer CONTROL_VAR_INIT_VALUE = 1;
 	private final Integer CONTROL_VAR_MIN_VALUE = 1;
@@ -64,7 +63,7 @@ public class AwesomePage extends WebPage {
 		personas.add(new NoInputBehavior());
 		form.add(personas);
 		
-		final NumberTextField<Integer> tiempoSimulacion = new NumberTextField<Integer>("tiempoSimulacion");
+		final NumberTextField<Long> tiempoSimulacion = new NumberTextField<Long>("tiempoSimulacion");
 		tiempoSimulacion.setModel(Model.of(TIME_INIT_VALUE));
 		tiempoSimulacion.setStep(TIME_STEP);
 		tiempoSimulacion.setMinimum(TIME_MIN_VALUE);
@@ -123,10 +122,10 @@ public class AwesomePage extends WebPage {
 		optionsReset.setTitle(new Title("Promedio de Tiempo entre Reseteos"));
 		optionsReset.setChartOptions(new ChartOptions(SeriesType.COLUMN));
 		optionsReset.setxAxis(new Axis().setCategories("Tiempo"));
-		optionsReset.setyAxis(new Axis().setTitle(new Title("Minutos")).setMax(10000).setTickInterval(500.0f));		
+		optionsReset.setyAxis(new Axis().setTitle(new Title("Minutos")).setMax(4000).setTickInterval(200.0f));		
 
 						
-		final Point barraReseteos = new Point("Tiempo entre Reseteos", 5000).setColor(new HighchartsColor(1));
+		final Point barraReseteos = new Point("Tiempo entre Reseteos", 1000).setColor(new HighchartsColor(1));
 						
 		optionsReset.addSeries(new PointSeries()
 				.setName("Tiempo")
@@ -165,10 +164,10 @@ public class AwesomePage extends WebPage {
 		optionsCluster.setTitle(new Title("Promedio de Conexiones al Cluster por Minuto"));
 		optionsCluster.setChartOptions(new ChartOptions(SeriesType.COLUMN));
 		optionsCluster.setxAxis(new Axis().setCategories("Conexiones"));
-		optionsCluster.setyAxis(new Axis().setTitle(new Title("Minutos")).setMax(100).setTickInterval(5.0f));		
+		optionsCluster.setyAxis(new Axis().setTitle(new Title("Minutos")).setMax(4000).setTickInterval(200.0f));		
 
 								
-		final Point barraConexionesCluster = new Point("Conexiones", 20).setColor(new HighchartsColor(2));
+		final Point barraConexionesCluster = new Point("Conexiones", 2000).setColor(new HighchartsColor(2));
 						
 		optionsCluster.addSeries(new PointSeries()
 				.setName("Cantidad de Conexiones")
@@ -196,10 +195,10 @@ public class AwesomePage extends WebPage {
 				promedioConexionesClusterPorMinuto.setDefaultModel(Model.of(resultados.getPromedioConexionesClusterPorMinuto()));
 				
 				barraConexionesRechazadas.setY(resultados.getPorcentajeDeConexionesRechazadas());
-				barraConexionesAceptadas.setY(100 - resultados.getPorcentajeDeConexionesRechazadas());
+				barraConexionesAceptadas.setY(100.0 - resultados.getPorcentajeDeConexionesRechazadas());
 				barraReseteos.setY(resultados.getPromedioDeTiempoEntreReseteos());
 				barraTiempoOcioso.setY(resultados.getPorcentajeDeTiempoOcioso());
-				barraTiempoProcesamiento.setY(100 - resultados.getPorcentajeDeTiempoOcioso());
+				barraTiempoProcesamiento.setY(100.0 - resultados.getPorcentajeDeTiempoOcioso());
 				barraConexionesCluster.setY(resultados.getPromedioConexionesClusterPorMinuto());
 				
 				target.add(panelResultados);

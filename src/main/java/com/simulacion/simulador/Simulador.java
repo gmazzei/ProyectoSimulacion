@@ -2,7 +2,7 @@ package com.simulacion.simulador;
 
 public class Simulador {
 	
-	private final Integer CONEXIONES_POR_APACHE = 120;
+	private final Integer CONEXIONES_POR_APACHE = 1000;
 	private final Double PROBABILIDAD_CAIDA_APACHE = 0.0004;
 	
 	private static final Simulador INSTANCE = new Simulador();
@@ -16,7 +16,7 @@ public class Simulador {
 	}
 	
 	
-	public Resultados realizarSimulacion(Integer s, Integer n, Integer p, Integer tf) {
+	public Resultados realizarSimulacion(Integer s, Integer n, Integer p, Long tf) {
 		
 		System.out.println("Simulacion a Realizar: ");
 		System.out.println("S = " + s);
@@ -26,25 +26,25 @@ public class Simulador {
 		
 		
 		//Condiciones iniciales
-		Integer time = 0;
-		Integer st = s * n * CONEXIONES_POR_APACHE;
-		Integer ster = 0;
-		Integer iter = 0;
-		Integer cReset = 0;
-		Integer cr = 0;
-		Integer scr = 0;
-		Integer de = 0;
-		Integer cl = 0;
-		Integer cs = 0;
-		Integer scs = 0;
+		long time = 0;
+		long st = s * n * CONEXIONES_POR_APACHE;
+		long ster = 0;
+		long iter = 0;
+		long cReset = 0;
+		long cr = 0;
+		long scr = 0;
+		long de = 0;
+		long cl = 0;
+		long cs = 0;
+		long scs = 0;
 		Double pcbd = 0.0;
 		Double scbd = 0.0;
-		Integer sto = 0;
+		long sto = 0;
 		Double pcr = 0.0;
 		Double pto = 0.0; 
 		Double pter = 0.0;
 		Double pccm = 0.0;
-		Integer mrs = -1;
+		long mrs = -1;
 		Double random;
 		
 		while (time <= tf) {
@@ -52,7 +52,7 @@ public class Simulador {
 			time = time + 1;
 			
 			//Reseteo del sistema
-			if (time.equals(mrs)) {
+			if (time == mrs) {
 				
 				st = CONEXIONES_POR_APACHE * n * s;
 				ster = ster + (time - iter);
@@ -125,10 +125,15 @@ public class Simulador {
 			
 		}
 		
-		pcr = scr * 100.0 / scs;
-		pto = sto * 100.0 / time;
-		pter = ster.doubleValue() / cReset;
+		pcr = (scr * 100.0) / scs;
+		pto = (sto * 100.0) / time;
+		pter = (double) ster / cReset;
 		pccm = scbd.doubleValue() / time;
+		
+		System.out.println("PCR: " + pcr);
+		System.out.println("PTO: " + pto);
+		System.out.println("PTER: " + pter);
+		System.out.println("PCCM: " + pccm);
 		
 		
 		Resultados resultados = new Resultados();
@@ -152,13 +157,37 @@ public class Simulador {
 		return porcentaje;
 	}
 
-	private Integer generarConexionesSolicitadas() {
-		Double conexiones = 20 + (40 * Math.random());
+	public Integer generarConexionesSolicitadas() {
+
+		Double random = Math.random(); 
+		
+		while (random.equals(0.0) || random.equals(1.0)) {
+			random = Math.random();
+		}
+		
+		Double conexiones = 5312.7 - (639.14 * Math.log(-Math.log(random)));
 		return conexiones.intValue();
 	}
 
-	private Integer generarConexionesLiberadas() {
-		Double conexiones = 20 + (40 * Math.random());
+	public Integer generarConexionesLiberadas() {
+		
+//		Double random = Math.random(); 
+//		
+//		while (random.equals(1.0)) {
+//			random = Math.random();
+//		}
+//		
+//		Double conexiones = ((-Math.log(1 - random)) / 0.00032254) + 1344;
+//		
+//		return conexiones.intValue();
+		
+		Double random = Math.random(); 
+		
+		while (random.equals(0.0) || random.equals(1.0)) {
+			random = Math.random();
+		}
+		
+		Double conexiones = 5312.7 - (639.14 * Math.log(-Math.log(random)));
 		return conexiones.intValue();
 	}
 

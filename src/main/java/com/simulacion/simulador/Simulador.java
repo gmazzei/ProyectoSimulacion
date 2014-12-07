@@ -7,6 +7,7 @@ public class Simulador {
 	
 	private static final Simulador INSTANCE = new Simulador();
 	
+	
 	private Simulador() {
 		
 	}
@@ -153,11 +154,21 @@ public class Simulador {
 	//FDPs
 	
 	private Double generarPorcentajeDeConexionesBD() {
-		Double porcentaje = 0.5 + 0.2 * Math.random(); 
+		
+		//Por falta de exactitud del numero PI, se incluye un control para que el porcentaje
+		//este en el intervalo [0;1]
+		
+		Double porcentaje = null;
+		
+		while (porcentaje == null || porcentaje < 0 || porcentaje > 1) {
+			Double random = Math.random();
+			porcentaje = ((Math.tan(Math.PI * (random - 0.5)) * 5.953) + 59.725) / 100.0;			
+		}
+		
 		return porcentaje;
 	}
 
-	public Integer generarConexionesSolicitadas() {
+	private Integer generarConexionesSolicitadas() {
 
 		Double random = Math.random(); 
 		
@@ -169,7 +180,7 @@ public class Simulador {
 		return conexiones.intValue();
 	}
 
-	public Integer generarConexionesLiberadas() {
+	private Integer generarConexionesLiberadas() {
 		
 		Double random = Math.random(); 
 		

@@ -32,10 +32,15 @@ public class AwesomePage extends WebPage {
 	private final Long TIME_MAX_VALUE = 100000000l;
 
 	private final Integer CONTROL_VAR_INIT_VALUE = 1;
+	
 	private final Integer CONTROL_VAR_MIN_VALUE = 1;
 	private final Integer CONTROL_VAR_MAX_VALUE = 99;
-
+	
+	private final Integer PERSONAS_MIN_VALUE = 1;
+	private final Integer PERSONAS_MAX_VALUE = 5;
+	
 	private final Integer CANT_CONEXIONES_NODO = 120;
+	
 	
 	public AwesomePage() {
 		
@@ -60,8 +65,8 @@ public class AwesomePage extends WebPage {
 		
 		final NumberTextField<Integer> personas = new NumberTextField<Integer>("personas");
 		personas.setModel(Model.of(CONTROL_VAR_INIT_VALUE));
-		personas.setMinimum(CONTROL_VAR_MIN_VALUE);
-		personas.setMaximum(CONTROL_VAR_MAX_VALUE);
+		personas.setMinimum(PERSONAS_MIN_VALUE);
+		personas.setMaximum(PERSONAS_MAX_VALUE);
 		personas.add(new NoInputBehavior());
 		form.add(personas);
 		

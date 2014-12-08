@@ -195,8 +195,67 @@ public class Simulador {
 
 	}
 
-	private Integer generarDemora(Integer p) {
-		Double minutos = 6/p + (30 * Math.random()/p);
+	public Integer generarDemora(Integer p) {
+		
+		
+		Double minutos = null;
+		Double a, b, c, d; /* 'c' es alfa 1 y 'd' es alfa 2*/
+		
+		while (minutos == null || minutos.intValue() <= 0) {
+			
+			Double random = Math.random();
+			
+			if (p.equals(1)) {
+				a = 3.19;
+				b = 32.481;
+				c = 1.0;
+				d = 0.99993;
+				
+				minutos = a + (b - a) * Math.pow((1.0 - Math.pow((1.0 - random), (1.0 / d))), (1.0 / c)) ; 
+				
+			} else if (p.equals(2)) {
+				
+				while (random.equals(0.0)) {
+					random = Math.random();
+				}
+				
+				a = 2.9619;
+				b = 10.3;
+				
+				minutos = b - (a * Math.log(-Math.log(random))); 
+				
+			} else if (p.equals(3)) {
+				
+				a = 0.40364;
+				b = 9.878;
+				c = 1.0679;
+				d = 0.92411;
+				
+				minutos = a + (b - a) * Math.pow((1.0 - Math.pow((1.0 - random), (1.0 / d))), (1.0 / c)) ;
+				
+			} else if (p.equals(4)) {
+				
+				a = 0.93261;
+				b = 7.48;
+				c = 1.163;
+				d = 0.8987;
+				
+				minutos = a + (b - a) * Math.pow((1.0 - Math.pow((1.0 - random), (1.0 / d))), (1.0 / c)) ; 
+				
+				
+			} else if (p.equals(5)) {
+				
+				a = 2.4394;
+				b = 3.6445;
+				
+				minutos = b * Math.pow(Math.log(1.0 / (1 - random)), 1.0 / a);
+				
+			}
+			
+		}
+		
+		
+		
 		return minutos.intValue();
 	}
 

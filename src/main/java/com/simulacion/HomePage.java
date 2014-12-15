@@ -23,18 +23,18 @@ import com.simulacion.behavior.NoInputBehavior;
 import com.simulacion.simulador.Resultados;
 import com.simulacion.simulador.Simulador;
 
-public class AwesomePage extends WebPage {
+public class HomePage extends WebPage {
 	
 	
 	private final Long TIME_INIT_VALUE = 1000000l;
 	private final Long TIME_MIN_VALUE = 1000000l;
 	private final Long TIME_STEP = 1000000l;
-	private final Long TIME_MAX_VALUE = 100000000l;
+	private final Long TIME_MAX_VALUE = 10000000l;
 
 	private final Integer CONTROL_VAR_INIT_VALUE = 1;
 	
 	private final Integer CONTROL_VAR_MIN_VALUE = 1;
-	private final Integer CONTROL_VAR_MAX_VALUE = 99;
+	private final Integer CONTROL_VAR_MAX_VALUE = 20;
 	
 	private final Integer PERSONAS_MIN_VALUE = 1;
 	private final Integer PERSONAS_MAX_VALUE = 5;
@@ -42,7 +42,7 @@ public class AwesomePage extends WebPage {
 	private final Integer CANT_CONEXIONES_NODO = 120;
 	
 	
-	public AwesomePage() {
+	public HomePage() {
 		
 		//Form
 		
